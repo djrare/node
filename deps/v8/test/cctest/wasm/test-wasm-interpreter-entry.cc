@@ -5,6 +5,7 @@
 #include <cstdint>
 
 #include "src/assembler-inl.h"
+#include "src/base/overflowing-math.h"
 #include "src/objects-inl.h"
 #include "src/wasm/wasm-objects.h"
 #include "test/cctest/cctest.h"
@@ -47,7 +48,7 @@ class ArgPassingHelper {
     runner.Build(outer_code.data(), outer_code.data() + outer_code.size());
 
     int funcs_to_redict[] = {static_cast<int>(inner_compiler.function_index())};
-    runner.builder().Link();
+    runner.builder().SetExecutable();
     WasmDebugInfo::RedirectToInterpreter(debug_info_,
                                          ArrayVector(funcs_to_redict));
     main_fun_wrapper_ = runner.builder().WrapCode(runner.function_index());
@@ -100,7 +101,9 @@ TEST(TestArgumentPassing_int32) {
        WASM_I32_ADD(WASM_I32_MUL(WASM_I32V_1(2), WASM_GET_LOCAL(0)), WASM_ONE)},
       {// Call f2 with param <0>.
        WASM_GET_LOCAL(0), WASM_CALL_FUNCTION0(f2.function_index())},
-      [](int32_t a) { return 2 * a + 1; });
+      [](int32_t a) {
+        return base::AddWithWraparound(base::MulWithWraparound(2, a), 1);
+      });
 
   FOR_INT32_INPUTS(v) { helper.CheckCall(*v); }
 }
@@ -121,7 +124,7 @@ TEST(TestArgumentPassing_double_int64) {
        WASM_CALL_FUNCTION0(f2.function_index())},
       [](int32_t a, int32_t b) {
         int64_t a64 = static_cast<int64_t>(a) & 0xFFFFFFFF;
-        int64_t b64 = static_cast<int64_t>(b) << 32;
+        int64_t b64 = static_cast<uint64_t>(static_cast<int64_t>(b)) << 32;
         return static_cast<double>(a64 | b64);
       });
 
