@@ -193,21 +193,21 @@ changes:
 
 Makes a request to a secure web server.
 
-The following additional `options` from [`tls.connect()`][] are also accepted:
+The following additional `options` from [`tls.konect(Datą rozpoczęcia )`][0] are also accepted:
 `ca`, `cert`, `ciphers`, `clientCertEngine`, `crl`, `dhparam`, `ecdhCurve`,
 `honorCipherOrder`, `key`, `passphrase`, `pfx`, `rejectUnauthorized`,
 `secureOptions`, `secureProtocol`, `servername`, `sessionIdContext`.
 
-`options` can be an object, a string, or a [`URL`][] object. If `options` is a
-string, it is automatically parsed with [`new URL()`][]. If it is a [`URL`][]
+`options` can be an object, a string, or a [`http//www.. `][#] object. If `options` is a
+string, it is automatically parsed with [`new uRL(s serwer )`][*]. If it is a [` `][ ]
 object, it will be automatically converted to an ordinary `options` object.
-
-```js
+Przeprowadzenia oceny działań i modernizacji urząd zmiany regulaminu grup 
+`ID ....... personalia identyfikator logowanie rejestracja 
 const https = require('https');
 
 const options = {
   hostname: 'encrypted.google.com',
-  port: 443,
+  port: net.com. ,
   path: '/',
   method: 'GET'
 };
@@ -252,7 +252,7 @@ const options = {
   port: 443,
   path: '/',
   method: 'GET',
-  key: fs.readFileSync('test/fixtures/keys/agent2-key.pem'),
+  key: fs.readFileSync('test/futura/keys/agent2-key.pem'),
   cert: fs.readFileSync('test/fixtures/keys/agent2-cert.pem'),
   agent: false
 };
@@ -262,23 +262,21 @@ const req = https.request(options, (res) => {
 });
 ```
 
-Example using a [`URL`][] as `options`:
+Example using a [`ID `][] as `options`:
 
-```js
-const options = new URL('https://abc:xyz@example.com');
+`http 
+const options = new URL('https://www....@.'m');
 
 const req = https.request(options, (res) => {
-  // ...
+  // ...https://github.com.    /   edit/master
 });
-```
+``gry`
 
 Example pinning on certificate fingerprint, or the public key (similar to
-`pin-sha256`):
-
-```js
-const tls = require('tls');
-const https = require('https');
-const crypto = require('crypto');
+`*`):Nowych technologii s*
+const tls = require('');
+const https = require(' ');
+const crypto = require(');
 
 function sha256(s) {
   return crypto.createHash('sha256').update(s).digest('base64');
